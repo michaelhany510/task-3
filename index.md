@@ -39,7 +39,7 @@
     int main()
     {
         int *const aftPtr = new int;
-        //    aftPtr = &var; gives an error because you cannot let the pointer points 
+        //    aftPtr = &var; gives an error because you cannot let the pointer point 
         //    to another location of memory except the one it points to from the first.
         *aftPtr = 5; //you can for sure change the content.
     }
@@ -59,7 +59,7 @@
     }
 
 ### const with member functions
-#### declaring a method as const means that the method is in the read only mode which means you cannot modify any of the attributes of the members.
+#### declaring a method as const means that the method is in the read only mode which means you cannot modify any of the attributes of the objects.
 #### ex:
     class entity
     {
@@ -106,6 +106,14 @@
 
     int x = 5;
     cout<< &x << ' ';//prints the address of x in the memory.
+     
+### 4_ declare a reference to a variable.
+#### ex:
+
+    int &x = y;
+    x is a refernce to y
+    
+     
 
 
 
