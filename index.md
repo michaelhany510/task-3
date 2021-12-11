@@ -1,37 +1,111 @@
-## Welcome to GitHub Pages
+# const
+### The const keyword specifies that a variable's value is constant and tells the compiler to prevent the programmer from modifying it.
+#### ex:
 
-You can use the [editor on GitHub](https://github.com/michaelhany510/task-3/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+    const int N = 5;
+    int main()
+    {
+        //N = 4;//error: cannot modify a const variable value.
+    }
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+### you can specify the size of an array using a const variable
+#### ex:
 
-### Markdown
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+    const int MAX = 25;
+    int arr[MAX];
+## using const with pointers
 
-```markdown
-Syntax highlighted code block
+### 1_ pointer variable pointing to a const value
+#### ex:
 
-# Header 1
-## Header 2
-### Header 3
+    int main()
+    {
+        int var = 10,n=10;
+        const int * befPtr = new int;
 
-- Bulleted
-- List
+        befPtr = &var;
 
-1. Numbered
-2. List
+        //    *befPtr = 5; syntax error because putting (const) before (int*) makes the pointer in the read only mode
+        //    which prevents you from modifying the content.
 
-**Bold** and _Italic_ and `Code` text
+        befPtr = &n;//you can point to another location in memory.
+    }
 
-[Link](url) and ![Image](src)
-```
+### 2_ const pointer variable point to the value
 
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
+#### ex:
 
-### Jekyll Themes
+    int main()
+    {
+        int *const aftPtr = new int;
+        //    aftPtr = &var; gives an error because you cannot let the pointer points 
+        //    to another location of memory except the one it points to from the first.
+        *aftPtr = 5; //you can for sure change the content.
+    }
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/michaelhany510/task-3/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+### 3_ const pointer variable point to constant value
 
-### Support or Contact
+#### ex:
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+    int main()
+    {
+        int var = 5;
+        //the following declaration prevents you from neither pointing
+        //to another location in the memory nor changing the contents.
+        const int* const aftAndBef = &var;
+        //*aftAndBef = 5 ;error: you cannot modify the content
+        //aftAndBef = &var;error: you cannot point to another location.
+    }
+
+### const with member functions
+#### declaring a method as const means that the method is in the read only mode which means you cannot modify any of the attributes of the members.
+#### ex:
+    class entity
+    {
+        private:
+            int mx,my;
+            mutable int var;
+        public:
+            //const here puts your method in read only mode, so you cannot
+            //change the contents of the attributes unless its mutable
+            int getX() const
+            {
+                var = 2;
+                //mx = 5;//gives an error because it is not mutable.
+            }
+    };
+
+### const with struct
+#### using const objects means using const attributes as well except for the mutable ones
+#### ex:
+    const struct
+    {
+        int n1;
+        mutable int n2;
+    } x = {0, 0};      // const object with mutable member
+    int main()
+    {
+        //  x.n1 = 4; // error: member of a const object is const
+        x.n2 = 4; // ok, mutable member of a const object isn't const
+    }
+
+# ampersand &
+## it can be used as a:
+### 1_ bitwise and operator &
+### it does the bitwise and operation over two operands(char or int).
+#### ex:
+    5 & 2 = 0
+    6 & 2 = 2
+### 2_ logical operator &&
+#### it does the logical and operation and returns true if all operands are true and false if just one of them is false
+
+### 3_ it can be put before variables to return it's address in the memory.
+#### ex:
+
+    int x = 5;
+    cout<< &x << ' ';//prints the address of x in the memory.
+
+
+
+
