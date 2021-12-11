@@ -97,6 +97,7 @@
 #### ex:
     5 & 2 = 0
     6 & 2 = 2
+    
 ### 2_ logical operator &&
 #### it does the logical and operation and returns true if all operands are true and false if just one of them is false
 
