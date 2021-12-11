@@ -16,6 +16,7 @@
 
     const int MAX = 25;
     int arr[MAX];
+    
 ## using const with pointers
 
 ### 1_ pointer variable pointing to a const value
